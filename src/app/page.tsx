@@ -1,6 +1,13 @@
 import { Nav } from "@/components/Nav";
 import { Button, Eyebrow, Heading, Lede, Section } from "@/components/ui";
-import { faqs, founderTrack, gauntlet, process, site } from "@/lib/site";
+import {
+  faqs,
+  founderTrack,
+  gauntlet,
+  process,
+  requiredStack,
+  site,
+} from "@/lib/site";
 
 export default function Home() {
   return (
@@ -10,6 +17,7 @@ export default function Home() {
         <Hero />
         <TwoMistakes />
         <Definition />
+        <Proof />
         <Bar />
         <HowItWorks />
         <Guarantee />
@@ -33,17 +41,28 @@ function Hero() {
         className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-ember/12 blur-[120px]"
       />
       <div className="relative mx-auto w-full max-w-6xl px-6 pt-24 pb-20 md:px-10 md:pt-32 md:pb-28">
-        <Eyebrow>AI-native engineers · Seed stage · Ship in weeks</Eyebrow>
+        <Eyebrow>AI-native engineers · Seed stage</Eyebrow>
 
-        <h1 className="mt-6 max-w-4xl text-[2.6rem] leading-[1.05] font-medium tracking-[-0.03em] text-balance md:text-7xl">
-          Your next engineer should ship like a team of three.
+        <h1 className="mt-6 max-w-[62rem] text-[2.4rem] leading-[1.04] font-medium tracking-[-0.03em] text-balance md:text-[4.2rem]">
+          Your competitors&apos; engineers stopped writing code line by line.
+          <span className="text-muted"> Yours haven&apos;t.</span>
         </h1>
 
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
-          Outcraft places senior engineers who build with AI at the core — not
-          as autocomplete. They take features from nothing to production, own
-          the infrastructure, and don&apos;t need managing. Because at seed
-          stage, you can&apos;t afford a hire who does.
+        <p className="mt-8 max-w-2xl text-xl leading-snug text-bone md:text-[1.65rem] md:leading-[1.35]">
+          You get engineers who don&apos;t write code line by line anymore. They
+          orchestrate it with{" "}
+          <span className="font-mono text-[0.88em] tracking-tight">
+            Claude Code
+          </span>
+          ,{" "}
+          <span className="font-mono text-[0.88em] tracking-tight">Codex</span>{" "}
+          and{" "}
+          <span className="font-mono text-[0.88em] tracking-tight">Cursor</span>
+          .
+        </p>
+
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted/80 md:text-lg">
+          The result: you ship 3x more PRs per engineer than industry baseline.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -75,13 +94,57 @@ function Hero() {
   );
 }
 
+/* ------------------------------------------------------------ the anti-stat */
+
+function Proof() {
+  return (
+    <Section>
+      <div className="grid gap-12 md:grid-cols-[1.15fr_1fr] md:gap-20">
+        <div>
+          <Eyebrow>About everyone else&apos;s numbers</Eyebrow>
+          <Heading>
+            Every agency has a multiplier. None of them will measure it in your
+            repo.
+          </Heading>
+          <Lede>
+            You&apos;ve seen the stat: 3x more PRs, 4x faster delivery, against
+            some &ldquo;industry baseline&rdquo; nobody names. You already know
+            PR count is gameable. So do they. That&apos;s why it&apos;s on the
+            homepage and not in the contract.
+          </Lede>
+        </div>
+
+        <div className="rounded-2xl border border-ember/30 bg-ember/[0.04] p-8 md:p-10">
+          <p className="text-2xl leading-snug font-medium tracking-[-0.01em] text-balance">
+            So we&apos;re not going to quote you one.
+          </p>
+          <p className="mt-5 leading-relaxed text-muted">
+            We&apos;ll measure ours instead,{" "}
+            <span className="text-bone">
+              in your repository, on your backlog
+            </span>
+            , during {site.offer.trialWeeks} weeks you don&apos;t pay for. Cycle
+            time, review turnaround, what actually reached production. You keep
+            the numbers whether you hire us or not.
+          </p>
+          <p className="mt-5 leading-relaxed text-muted">
+            A statistic is something you&apos;re asked to believe. This is
+            something you can check. We think that&apos;s worth more than a
+            decimal point.
+          </p>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 /* -------------------------------------------------------- the two mistakes */
 
 const mistakes = [
   {
     tag: "Mistake 01",
     title: "The autocomplete engineer",
-    body: "A good senior dev with Copilot open. They write the same code they always did, about 20% faster. That's a productivity tweak, not a different kind of engineer — and you're paying senior rates for a rounding error.",
+    body: "A good senior dev with Copilot open. They write the same code they always did, about 20% faster. That's a productivity tweak, not a different kind of engineer, and you're paying senior rates for a rounding error.",
   },
   {
     tag: "Mistake 02",
@@ -99,7 +162,7 @@ function TwoMistakes() {
       </Heading>
       <Lede>
         You have twelve to eighteen months of runway. A bad engineering hire
-        costs you a quarter of it — and at seed stage, you don&apos;t get that
+        costs you a quarter of it, and at seed stage you don&apos;t get that
         quarter back.
       </Lede>
 
@@ -137,7 +200,7 @@ function Definition() {
         <div className="space-y-6 text-lg leading-relaxed text-muted">
           <p>
             An AI-native engineer architects{" "}
-            <span className="text-bone">around what models actually are</span> —
+            <span className="text-bone">around what models actually are</span>:
             nondeterministic, expensive, latent, and occasionally, confidently
             wrong. They design the evals before the feature. They know what it
             costs per thousand calls. They know exactly what the system does
@@ -153,6 +216,27 @@ function Definition() {
             engineer who can&apos;t ship production systems without AI
             can&apos;t ship them with it either.
           </p>
+
+          <div className="!mt-10 rounded-2xl border border-line bg-ink p-7">
+            <p className="font-mono text-xs tracking-widest text-muted uppercase">
+              The nine we require fluency in
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {requiredStack.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-line px-3.5 py-1.5 font-mono text-xs text-bone"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+            <p className="mt-5 text-base leading-relaxed">
+              Fluency here is the entry ticket, not the qualification. Plenty of
+              engineers can drive these tools. Far fewer can hand you the result
+              and stand behind it at 3am.
+            </p>
+          </div>
         </div>
       </div>
     </Section>
@@ -168,7 +252,7 @@ function Bar() {
       <Heading>Five stages. Every engineer. No exceptions.</Heading>
       <Lede>
         We publish our hiring bar so you can hold us to it. This is the whole
-        gauntlet — nothing behind the curtain.
+        gauntlet. Nothing behind the curtain.
       </Lede>
 
       <div className="mt-16 divide-y divide-line border-y border-line">
@@ -187,7 +271,7 @@ function Bar() {
       <div className="mt-10 rounded-2xl border border-ember/30 bg-ember/[0.04] p-8">
         <p className="text-lg leading-relaxed text-balance">
           <span className="text-ember">The part nobody else will say:</span> if
-          nobody clears the bar for your role, we tell you that — instead of
+          nobody clears the bar for your role, we tell you that, instead of
           sending you the best of a bad shortlist to keep the deal alive.
           We&apos;d rather lose the contract than place someone who didn&apos;t
           earn it.
@@ -240,7 +324,7 @@ const guarantees = [
   },
   {
     title: "You own everything",
-    body: "All code and IP is yours from day one — including whatever they built during a trial you never paid for.",
+    body: "All code and IP is yours from day one, including whatever they built during a trial you never paid for.",
   },
 ];
 
@@ -293,7 +377,7 @@ function Founder() {
             </p>
             <p className="text-bone">
               I&apos;ve been the seed-stage CTO trying to hire exactly this
-              person. That&apos;s how I know how badly the market serves you —
+              person. That&apos;s how I know how badly the market serves you,
               and it&apos;s why I run every engineer through the five stages
               myself.
             </p>
@@ -413,7 +497,7 @@ function Contact() {
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted">
           Twenty minutes. You&apos;ll leave knowing whether an AI-native
-          engineer solves your problem — including if the answer is no.
+          engineer solves your problem, including if the answer is no.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Button href={`mailto:${site.founder.email}`}>

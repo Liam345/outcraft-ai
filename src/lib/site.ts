@@ -1,6 +1,6 @@
 /**
  * Single source of truth for anything that changes as the business changes.
- * Everything in here is a real, defensible claim — no invented clients,
+ * Everything in here is a real, defensible claim. No invented clients,
  * testimonials, headcounts or outcome stats. Keep it that way.
  */
 
@@ -10,7 +10,7 @@ export const site = {
   url: "https://outcraftai.com",
   tagline: "AI-native engineers for seed-stage startups.",
   description:
-    "Outcraft places senior engineers who build with AI at the core — not as autocomplete. Two-week paid trial. Not a fit, you don't pay.",
+    "Senior engineers who orchestrate code with Claude Code, Codex, Cursor and six more agentic tools, then ship it to production with evals and a cost ceiling. Two-week paid trial, measured in your repo. Not a fit, you don't pay.",
 
   // TODO(founder): confirm spelling as you want it shown publicly.
   founder: {
@@ -57,11 +57,32 @@ export const founderTrack = [
   },
 ];
 
+/**
+ * The hero says "Claude Code, Codex, Cursor and six more agentic tools we
+ * require fluency in", so this list must contain exactly nine, and it must be
+ * what you genuinely test for in stage 03. If you change the list, change the
+ * hero. The claim is only credible because it's checkable.
+ *
+ * TODO(founder): confirm this is the stack you'll actually assess. Swap
+ * anything you wouldn't personally grade an engineer on.
+ */
+export const requiredStack = [
+  "Claude Code",
+  "Codex",
+  "Cursor",
+  "Windsurf",
+  "Aider",
+  "Cline",
+  "Claude Agent SDK",
+  "Braintrust (evals)",
+  "Langfuse (tracing)",
+];
+
 export const gauntlet = [
   {
     n: "01",
     title: "Track record screen",
-    body: "Seven years minimum, and they must have owned a production system end to end — architecture, deploy, on-call, the lot. Not a ticket queue.",
+    body: "Seven years minimum, and they must have owned a production system end to end: architecture, deploy, on-call, the lot. Not a ticket queue.",
   },
   {
     n: "02",
@@ -76,7 +97,7 @@ export const gauntlet = [
   {
     n: "04",
     title: "Adversarial review",
-    body: "They defend their own code while we attack it. We're looking for engineers who can name every tradeoff they made — not ones who got a good result by accident.",
+    body: "They defend their own code while we attack it. We're looking for engineers who can name every tradeoff they made, not ones who got a good result by accident.",
   },
   {
     n: "05",
@@ -96,7 +117,7 @@ export const process = [
     n: "02",
     title: "We match one engineer",
     meta: `Within ${site.offer.matchDays} days`,
-    body: "One engineer, with a written case for why them. Not a stack of CVs for you to sift — that's the work you're paying us to do.",
+    body: "One engineer, with a written case for why them. Not a stack of CVs for you to sift. That's the work you're paying us to do.",
   },
   {
     n: "03",
@@ -123,7 +144,7 @@ export const faqs = [
   },
   {
     q: "How is this different from just hiring a contractor?",
-    a: "Most contract engineers are strong generalists who use AI as autocomplete. We select specifically for engineers who architect around what models actually are — nondeterministic, expensive and occasionally wrong — and who have shipped that into production, not just into a demo.",
+    a: "Most contract engineers are strong generalists who use AI as autocomplete. We select specifically for engineers who architect around what models actually are: nondeterministic, expensive and occasionally wrong. And who have shipped that into production, not just into a demo.",
   },
   {
     q: "Who owns the code?",
@@ -135,6 +156,6 @@ export const faqs = [
   },
   {
     q: "What does it cost?",
-    a: "See below — we publish our rates, and our first clients get founding pricing.",
+    a: "See below. We publish our rates, and our first clients get founding pricing.",
   },
 ];

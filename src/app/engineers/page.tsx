@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const looksLike = [
   {
     title: "Seven years, minimum",
-    body: "And at least one production system you owned end to end — you chose the architecture, you deployed it, you got paged when it broke.",
+    body: "And at least one production system you owned end to end. You chose the architecture, you deployed it, you got paged when it broke.",
   },
   {
     title: "You've shipped AI into production",
@@ -47,7 +47,7 @@ export default function Engineers() {
               That&apos;s not a marketing line, it&apos;s the entire product.
               Founders trust us because the bar doesn&apos;t move. If you clear
               it, you get put in front of seed-stage teams who need you to own
-              something real — and you get paid like it.
+              something real, and you get paid like it.
             </p>
             <div className="mt-10">
               <Button href={`mailto:${site.founder.email}?subject=Engineer%20application`}>
