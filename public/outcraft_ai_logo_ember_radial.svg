@@ -1,0 +1,30 @@
+<svg width="1024" height="1024" viewBox="140 140 744 744" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="emberRing" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff9660"/>
+      <stop offset="100%" stop-color="#c82d0a"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 1
+                0 0 0 0 0.36
+                0 0 0 0 0.16
+                0 0 0 0.5 0" result="glowColor"/>
+      <feMerge>
+        <feMergeNode in="glowColor"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ink background -->
+  <rect width="1024" height="1024" fill="#0b0b0c"/>
+
+  <!-- ember ring with radial gradient and glow -->
+  <g filter="url(#glow)">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M512 839.36c-180.7 0-327.36-146.66-327.36-327.36S331.3 184.64 512 184.64 839.36 331.3 839.36 512 692.7 839.36 512 839.36zm0-491.52c-90.7 0-164.16 73.46-164.16 164.16S421.3 676.16 512 676.16 676.16 602.7 676.16 512 602.7 347.84 512 347.84z"
+      fill="url(#emberRing)"/>
+  </g>
+</svg>

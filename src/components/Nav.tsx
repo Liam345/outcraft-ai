@@ -1,20 +1,38 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { Button } from "./ui";
+import { Button, LogoMark } from "./ui";
 
-const links = [
-  { href: "#bar", label: "Our bar" },
+const homeLinks = [
+  { href: "#bar", label: "Bar" },
+  { href: "#team-plan", label: "Team plan" },
+  { href: "#roles", label: "Roles" },
   { href: "#how", label: "How it works" },
-  { href: "#founder", label: "Who's behind it" },
+  { href: "#founder", label: "Founder" },
   { href: "#pricing", label: "Pricing" },
 ];
 
-export function Nav() {
+const engineerLinks = [
+  { href: "/#roles", label: "For companies" },
+  { href: "#why", label: "Why join" },
+  { href: "#bar", label: "The bar" },
+  { href: "#apply", label: "Apply" },
+];
+
+export function Nav({ context = "home" }: { context?: "home" | "engineers" }) {
+  const links = context === "engineers" ? engineerLinks : homeLinks;
+  const cta =
+    context === "engineers"
+      ? {
+          href: `mailto:${site.founder.email}?subject=Engineer%20application`,
+          label: "Apply",
+        }
+      : { href: site.bookingUrl, label: "Get a 30-min velocity audit" };
+
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-ink/80 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 md:px-10">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="block h-4 w-4 rotate-45 rounded-[3px] bg-ember" />
+          <LogoMark className="h-8 w-8" />
           <span className="text-[15px] font-medium tracking-[-0.01em]">
             Outcraft <span className="text-muted">AI</span>
           </span>
@@ -32,7 +50,7 @@ export function Nav() {
           ))}
         </nav>
 
-        <Button href={site.bookingUrl}>Book a scoping call</Button>
+        <Button href={cta.href}>{cta.label}</Button>
       </div>
     </header>
   );
