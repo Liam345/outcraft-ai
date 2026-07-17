@@ -1,11 +1,12 @@
 import { Nav } from "@/components/Nav";
-import { Button, Eyebrow, Heading, Lede, Section } from "@/components/ui";
+import { TeamPlanForm } from "@/components/TeamPlanForm";
+import { Button, Eyebrow, Heading, Lede, LogoMark, Section } from "@/components/ui";
 import {
   faqs,
   founderTrack,
   gauntlet,
   process,
-  requiredStack,
+  roles,
   site,
 } from "@/lib/site";
 
@@ -15,16 +16,13 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
-        <TwoMistakes />
-        <Definition />
-        <Proof />
         <Bar />
+        <TeamPlan />
+        <Roles />
         <HowItWorks />
-        <Guarantee />
         <Founder />
         <Pricing />
         <Faq />
-        <Contact />
       </main>
       <Footer />
     </>
@@ -41,52 +39,47 @@ function Hero() {
         className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-ember/12 blur-[120px]"
       />
       <div className="relative mx-auto w-full max-w-6xl px-6 pt-24 pb-20 md:px-10 md:pt-32 md:pb-28">
-        <Eyebrow>AI-native engineers · Seed stage</Eyebrow>
+        <Eyebrow>AI-native engineers · Seed stage · Series A</Eyebrow>
 
-        <h1 className="mt-6 max-w-[62rem] text-[2.4rem] leading-[1.04] font-medium tracking-[-0.03em] text-balance md:text-[4.2rem]">
-          Your competitors&apos; engineers stopped writing code line by line.
-          <span className="text-muted"> Yours haven&apos;t.</span>
+        <h1 className="mt-6 max-w-[64rem] text-[2.45rem] leading-[1.04] font-medium tracking-[-0.03em] text-balance md:text-[4.35rem]">
+          AI-native engineers for early-stage startups racing to ship product.
         </h1>
 
-        <p className="mt-8 max-w-2xl text-xl leading-snug text-bone md:text-[1.65rem] md:leading-[1.35]">
-          You get engineers who don&apos;t write code line by line anymore. They
-          orchestrate it with{" "}
+        <p className="mt-8 max-w-3xl text-xl leading-snug text-bone md:text-[1.55rem] md:leading-[1.35]">
+          Outcraft AI helps companies bring in vetted engineers who use{" "}
           <span className="font-mono text-[0.88em] tracking-tight">
             Claude Code
           </span>
           ,{" "}
-          <span className="font-mono text-[0.88em] tracking-tight">Codex</span>{" "}
-          and{" "}
-          <span className="font-mono text-[0.88em] tracking-tight">Cursor</span>
-          .
+          <span className="font-mono text-[0.88em] tracking-tight">Codex</span>
+          ,{" "}
+          <span className="font-mono text-[0.88em] tracking-tight">Cursor</span>{" "}
+          and modern agentic workflows to ship real product work.
         </p>
 
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted/80 md:text-lg">
-          The result: you ship 3x more PRs per engineer than industry baseline.
+          The result: you ship 3x more PRs per engineer than industry baseline
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
-          <Button href={site.bookingUrl}>Book a 20-min scoping call</Button>
+          <Button href={site.bookingUrl}>Get a 30-min velocity audit</Button>
           <Button href="#bar" variant="ghost">
-            See the bar they clear
+            See the vetting bar
           </Button>
         </div>
 
-        <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs tracking-wide text-muted">
+        <ul className="mt-14 grid gap-3 font-mono text-xs tracking-wide text-muted sm:grid-cols-2 lg:grid-cols-4">
           <li>
-            <span className="text-ember">◆</span> {site.offer.trialWeeks}-week
-            paid trial
+            <span className="text-ember">01</span> Highly vetted engineers
           </li>
           <li>
-            <span className="text-ember">◆</span> Not a fit? You don&apos;t pay
-            for it
+            <span className="text-ember">02</span> Measured in your repo
           </li>
           <li>
-            <span className="text-ember">◆</span> Replacement in{" "}
-            {site.offer.replacementDays} business days
+            <span className="text-ember">03</span> Built for early-stage speed
           </li>
           <li>
-            <span className="text-ember">◆</span> Month to month, no lock-in
+            <span className="text-ember">04</span> Founder-led hiring
           </li>
         </ul>
       </div>
@@ -94,150 +87,76 @@ function Hero() {
   );
 }
 
-/* ------------------------------------------------------------ the anti-stat */
+/* -------------------------------------------------------------- team plan */
 
-function Proof() {
+function TeamPlan() {
   return (
-    <Section>
-      <div className="grid gap-12 md:grid-cols-[1.15fr_1fr] md:gap-20">
-        <div>
-          <Eyebrow>About everyone else&apos;s numbers</Eyebrow>
-          <Heading>
-            Every agency has a multiplier. None of them will measure it in your
-            repo.
-          </Heading>
-          <Lede>
-            You&apos;ve seen the stat: 3x more PRs, 4x faster delivery, against
-            some &ldquo;industry baseline&rdquo; nobody names. You already know
-            PR count is gameable. So do they. That&apos;s why it&apos;s on the
-            homepage and not in the contract.
-          </Lede>
-        </div>
+    <Section id="team-plan">
+      <div className="mx-auto max-w-3xl text-center">
+        <Eyebrow>Start without a Onboarding call</Eyebrow>
+        <h2 className="mt-4 text-3xl font-medium tracking-[-0.02em] text-balance md:text-5xl">
+          Get a practical team plan before you hire.
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+          Tell me what you are trying to build. I will reply with the kind of
+          engineer you need, what the trial should measure, and whether
+          Outcraft is a fit.
+        </p>
+      </div>
 
-        <div className="rounded-2xl border border-ember/30 bg-ember/[0.04] p-8 md:p-10">
-          <p className="text-2xl leading-snug font-medium tracking-[-0.01em] text-balance">
-            So we&apos;re not going to quote you one.
+      <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-[1.05fr_0.95fr]">
+        <TeamPlanForm recipient={site.teamPlanEmail} />
+
+        <div className="rounded-2xl border border-ember/30 bg-ember/[0.04] p-8">
+          <p className="font-mono text-xs tracking-widest text-ember uppercase">
+            What you get back
           </p>
-          <p className="mt-5 leading-relaxed text-muted">
-            We&apos;ll measure ours instead,{" "}
-            <span className="text-bone">
-              in your repository, on your backlog
-            </span>
-            , during {site.offer.trialWeeks} weeks you don&apos;t pay for. Cycle
-            time, review turnaround, what actually reached production. You keep
-            the numbers whether you hire us or not.
-          </p>
-          <p className="mt-5 leading-relaxed text-muted">
-            A statistic is something you&apos;re asked to believe. This is
-            something you can check. We think that&apos;s worth more than a
-            decimal point.
-          </p>
+          <ul className="mt-6 space-y-5 text-sm leading-relaxed text-muted">
+            <li>
+              <span className="text-bone">Role recommendation:</span> full-stack,
+              AI product, automation or platform.
+            </li>
+            <li>
+              <span className="text-bone">Trial scope:</span> the smallest piece
+              of real work that proves fit.
+            </li>
+            <li>
+              <span className="text-bone">Success criteria:</span> what should be
+              measured before any monthly commitment.
+            </li>
+            <li>
+              <span className="text-bone">Honest fit call:</span> if this is not
+              a good use of Outcraft, I will say that.
+            </li>
+          </ul>
         </div>
       </div>
     </Section>
   );
 }
 
-/* -------------------------------------------------------- the two mistakes */
+/* ------------------------------------------------------------------ roles */
 
-const mistakes = [
-  {
-    tag: "Mistake 01",
-    title: "The autocomplete engineer",
-    body: "A good senior dev with Copilot open. They write the same code they always did, about 20% faster. That's a productivity tweak, not a different kind of engineer, and you're paying senior rates for a rounding error.",
-  },
-  {
-    tag: "Mistake 02",
-    title: "The demo builder",
-    body: "Ships something dazzling in a week. No evals, no cost ceiling, no failure path. It falls over the first time a real user does something strange, and you find out about it in production, from a customer.",
-  },
-];
-
-function TwoMistakes() {
+function Roles() {
   return (
-    <Section>
-      <Eyebrow>The hiring trap</Eyebrow>
-      <Heading>
-        Most &ldquo;AI engineers&rdquo; are one of two expensive mistakes.
-      </Heading>
+    <Section id="roles" className="bg-ink-2">
+      <Eyebrow>Roles</Eyebrow>
+      <Heading>Pick the engineering capacity your roadmap actually needs.</Heading>
       <Lede>
-        You have twelve to eighteen months of runway. A bad engineering hire
-        costs you a quarter of it, and at seed stage you don&apos;t get that
-        quarter back.
+        The right engineer depends on what is blocking the roadmap: product
+        scope, AI capability, internal operations, or delivery infrastructure.
       </Lede>
 
       <div className="mt-14 grid gap-4 md:grid-cols-2">
-        {mistakes.map((m) => (
-          <div
-            key={m.tag}
-            className="rounded-2xl border border-line bg-ink-2 p-8"
-          >
-            <p className="font-mono text-xs tracking-widest text-muted uppercase">
-              {m.tag}
+        {roles.map((role) => (
+          <div key={role.title} className="rounded-2xl border border-line bg-ink p-8">
+            <h3 className="text-2xl font-medium tracking-[-0.02em]">{role.title}</h3>
+            <p className="mt-3 text-ember">{role.line}</p>
+            <p className="mt-6 border-l-2 border-ember pl-5 text-sm leading-relaxed text-muted">
+              {role.proof}
             </p>
-            <h3 className="mt-4 text-xl font-medium tracking-[-0.01em]">
-              {m.title}
-            </h3>
-            <p className="mt-3 leading-relaxed text-muted">{m.body}</p>
           </div>
         ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ----------------------------------------------------------- our definition */
-
-function Definition() {
-  return (
-    <Section className="bg-ink-2">
-      <div className="grid gap-12 md:grid-cols-[1fr_1.15fr] md:gap-20">
-        <div>
-          <Eyebrow>What we actually mean</Eyebrow>
-          <Heading>AI-native is a seniority bar, not a tool preference.</Heading>
-        </div>
-
-        <div className="space-y-6 text-lg leading-relaxed text-muted">
-          <p>
-            An AI-native engineer architects{" "}
-            <span className="text-bone">around what models actually are</span>:
-            nondeterministic, expensive, latent, and occasionally, confidently
-            wrong. They design the evals before the feature. They know what it
-            costs per thousand calls. They know exactly what the system does
-            when the model returns nonsense, because they decided that in
-            advance.
-          </p>
-          <p>
-            And they use AI to compress their own delivery loop, which is why
-            one of them outruns a small team.
-          </p>
-          <p className="border-l-2 border-ember pl-6 text-bone">
-            Seniority is the prerequisite. The AI part is the multiplier. An
-            engineer who can&apos;t ship production systems without AI
-            can&apos;t ship them with it either.
-          </p>
-
-          <div className="!mt-10 rounded-2xl border border-line bg-ink p-7">
-            <p className="font-mono text-xs tracking-widest text-muted uppercase">
-              The nine we require fluency in
-            </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {requiredStack.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-line px-3.5 py-1.5 font-mono text-xs text-bone"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-            <p className="mt-5 text-base leading-relaxed">
-              Fluency here is the entry ticket, not the qualification. Plenty of
-              engineers can drive these tools. Far fewer can hand you the result
-              and stand behind it at 3am.
-            </p>
-          </div>
-        </div>
       </div>
     </Section>
   );
@@ -249,10 +168,10 @@ function Bar() {
   return (
     <Section id="bar">
       <Eyebrow>The bar</Eyebrow>
-      <Heading>Five stages. Every engineer. No exceptions.</Heading>
+      <Heading>Four stages. Every engineer. No exceptions.</Heading>
       <Lede>
-        We publish our hiring bar so you can hold us to it. This is the whole
-        gauntlet. Nothing behind the curtain.
+        This is the filter Outcraft is built around. It is public so clients can
+        hold us to it and engineers know exactly what they are walking into.
       </Lede>
 
       <div className="mt-16 divide-y divide-line border-y border-line">
@@ -270,11 +189,9 @@ function Bar() {
 
       <div className="mt-10 rounded-2xl border border-ember/30 bg-ember/[0.04] p-8">
         <p className="text-lg leading-relaxed text-balance">
-          <span className="text-ember">The part nobody else will say:</span> if
-          nobody clears the bar for your role, we tell you that, instead of
-          sending you the best of a bad shortlist to keep the deal alive.
-          We&apos;d rather lose the contract than place someone who didn&apos;t
-          earn it.
+          <span className="text-ember">The rule:</span> if nobody clears the bar
+          for your role, we tell you. The failure mode of this category is
+          sending the best available person instead of the right person.
         </p>
       </div>
     </Section>
@@ -287,11 +204,11 @@ function HowItWorks() {
   return (
     <Section id="how" className="bg-ink-2">
       <Eyebrow>How it works</Eyebrow>
-      <Heading>From first call to shipping code in about two weeks.</Heading>
+      <Heading>From problem brief to measured trial without a long hiring loop.</Heading>
 
-      <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
+      <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-5">
         {process.map((p) => (
-          <div key={p.n} className="bg-ink p-8">
+          <div key={p.n} className="bg-ink p-7">
             <p className="font-mono text-sm text-ember">{p.n}</p>
             <h3 className="mt-5 text-lg font-medium tracking-[-0.01em]">
               {p.title}
@@ -300,55 +217,6 @@ function HowItWorks() {
               {p.meta}
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">{p.body}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-/* --------------------------------------------------------------- guarantee */
-
-const guarantees = [
-  {
-    title: `${site.offer.trialWeeks}-week paid trial`,
-    body: "Real work in your repo. If they're not a fit at the end of it, you don't pay for the trial.",
-  },
-  {
-    title: `Replacement in ${site.offer.replacementDays} days`,
-    body: "If it stops working at any point, we replace them within five business days.",
-  },
-  {
-    title: "Month to month",
-    body: "No twelve-month lock-in. You should stay because it's working, not because you signed.",
-  },
-  {
-    title: "You own everything",
-    body: "All code and IP is yours from day one, including whatever they built during a trial you never paid for.",
-  },
-];
-
-function Guarantee() {
-  return (
-    <Section>
-      <Eyebrow>Risk, reversed</Eyebrow>
-      <Heading>We take the risk of the hire. Not you.</Heading>
-      <Lede>
-        You&apos;re the one with runway on the line. So the terms are built so
-        that a bad match costs us, and not you.
-      </Lede>
-
-      <div className="mt-14 grid gap-4 sm:grid-cols-2">
-        {guarantees.map((g) => (
-          <div
-            key={g.title}
-            className="flex gap-5 rounded-2xl border border-line bg-ink-2 p-7"
-          >
-            <span className="mt-1.5 block h-2.5 w-2.5 shrink-0 rotate-45 rounded-[2px] bg-ember" />
-            <div>
-              <h3 className="font-medium tracking-[-0.01em]">{g.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{g.body}</p>
-            </div>
           </div>
         ))}
       </div>
@@ -371,23 +239,17 @@ function Founder() {
           <div className="mt-8 space-y-5 leading-relaxed text-muted">
             <p>
               I&apos;m {site.founder.name}. I&apos;ve spent a decade building
-              systems inside institutions where a bug is a regulatory incident,
-              and then inside a seed-stage startup where a slow quarter is an
-              extinction event.
+              systems inside institutions where reliability, security and
+              delivery discipline mattered, and then inside a startup where slow
+              execution becomes existential quickly.
             </p>
             <p className="text-bone">
-              I&apos;ve been the seed-stage CTO trying to hire exactly this
-              person. That&apos;s how I know how badly the market serves you,
-              and it&apos;s why I run every engineer through the five stages
-              myself.
+              I built Outcraft for the engineer I kept wishing I could hire:
+              fast with AI, careful with systems, clear about tradeoffs, and
+              accountable when the work reaches production.
             </p>
           </div>
 
-          <div className="mt-10">
-            <Button href={site.bookingUrl} variant="ghost">
-              Talk to me directly
-            </Button>
-          </div>
         </div>
 
         <div className="divide-y divide-line border-y border-line">
@@ -412,45 +274,46 @@ function Pricing() {
   return (
     <Section id="pricing">
       <Eyebrow>Pricing</Eyebrow>
-      <Heading>Founding client pricing, and an honest trade.</Heading>
+      <Heading>Senior AI-native engineering without Bay Area burn.</Heading>
 
       <div className="mt-12 grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
         <div className="space-y-6 text-lg leading-relaxed text-muted">
           <p>
-            We&apos;re taking on our first{" "}
-            <span className="text-bone">
-              {site.offer.foundingClientSlots} clients
-            </span>{" "}
-            at below-market rates. In exchange, once you&apos;ve shipped
-            something you&apos;re proud of, you let us write it up as a case
-            study.
+            Outcraft AI gives early-stage teams access to strong AI-native
+            engineers from India, where the cost base is lower but the
+            engineering bar stays high.
           </p>
           <p className="text-bone">
-            That&apos;s the whole deal, stated plainly: you get senior AI-native
-            engineering under market rate, and we get the proof we need to stop
-            discounting. Both sides know what they&apos;re trading.
+            Engagements typically range from{" "}
+            <span className="text-bone">
+              ${site.offer.monthlyPriceLow.toLocaleString()}-$
+              {site.offer.monthlyPriceHigh.toLocaleString()}/month
+            </span>{" "}
+            depending on scope, availability, and the level of ownership
+            required.
           </p>
           <p className="text-base">
-            {/* TODO(founder): set your real day/month rates before launch. */}
-            Rates depend on scope and commitment. Bring your problem to the
-            scoping call and you&apos;ll leave it with a number.
+            You are not paying for a local hiring market, recruiter margin, or
+            agency overhead. You are paying for vetted engineering capacity that
+            can move the product.
           </p>
         </div>
 
         <div className="rounded-2xl border border-ember/30 bg-ember/[0.04] p-8">
           <p className="font-mono text-xs tracking-widest text-ember uppercase">
-            Founding cohort
+            Typical range
           </p>
           <p className="mt-6 text-5xl font-medium tracking-[-0.03em]">
-            {site.offer.foundingClientSlots}
-            <span className="text-muted"> slots</span>
+            ${site.offer.monthlyPriceLow / 1000}k-$
+            {site.offer.monthlyPriceHigh / 1000}k
+            <span className="text-muted">/mo</span>
           </p>
           <p className="mt-4 leading-relaxed text-muted">
-            Below-market rates, direct access to me, and a say in how we build
-            this. When they&apos;re gone, they&apos;re gone.
+            Scoped around the milestone, engineer availability, and level of
+            ownership required.
           </p>
           <div className="mt-8">
-            <Button href={site.bookingUrl}>Claim a slot</Button>
+            <Button href={site.bookingUrl}>Get a 30-min velocity audit</Button>
           </div>
         </div>
       </div>
@@ -485,33 +348,6 @@ function Faq() {
   );
 }
 
-/* ----------------------------------------------------------------- contact */
-
-function Contact() {
-  return (
-    <Section id="contact">
-      <div className="mx-auto max-w-3xl text-center">
-        <Eyebrow>Next step</Eyebrow>
-        <h2 className="mt-4 text-3xl font-medium tracking-[-0.02em] text-balance md:text-5xl">
-          Tell me what you&apos;re building.
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          Twenty minutes. You&apos;ll leave knowing whether an AI-native
-          engineer solves your problem, including if the answer is no.
-        </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Button href={`mailto:${site.founder.email}`}>
-            Email {site.founder.name.split(" ")[0]}
-          </Button>
-          <Button href="/engineers" variant="ghost">
-            I&apos;m an engineer, not a founder
-          </Button>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
 /* ------------------------------------------------------------------ footer */
 
 function Footer() {
@@ -519,7 +355,7 @@ function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between md:px-10">
         <div className="flex items-center gap-2.5">
-          <span className="block h-3 w-3 rotate-45 rounded-[2px] bg-ember" />
+          <LogoMark className="h-[22px] w-[22px]" />
           <span className="text-sm">
             Outcraft <span className="text-muted">AI</span>
           </span>
