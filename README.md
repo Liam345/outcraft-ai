@@ -2,6 +2,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## Email Delivery
+
+The team-plan and engineer application forms send email through Resend.
+Configure these environment variables locally and in Vercel:
+
+```bash
+RESEND_API_KEY=re_xxxxxxxxx
+RESEND_FROM_EMAIL="Outcraft AI <hello@contact.outcraftai.com>"
+```
+
+`RESEND_FROM_EMAIL` must use the subdomain verified in Resend. Form submissions
+are delivered to `vinall@outcraftai.com`.
+
 First, run the development server:
 
 ```bash

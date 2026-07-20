@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { TeamPlanForm } from "@/components/TeamPlanForm";
 import { Button, Eyebrow, Heading, Lede, LogoMark, Section } from "@/components/ui";
@@ -64,7 +65,7 @@ function Hero() {
         <div className="mt-10 flex flex-wrap items-center gap-3">
           <Button href={site.bookingUrl}>Get a 30-min velocity audit</Button>
           <Button href="#bar" variant="ghost">
-            See the vetting bar
+            See the standard
           </Button>
         </div>
 
@@ -105,7 +106,7 @@ function TeamPlan() {
       </div>
 
       <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-[1.05fr_0.95fr]">
-        <TeamPlanForm recipient={site.teamPlanEmail} />
+        <TeamPlanForm />
 
         <div className="rounded-2xl border border-ember/30 bg-ember/[0.04] p-8">
           <p className="font-mono text-xs tracking-widest text-ember uppercase">
@@ -162,12 +163,12 @@ function Roles() {
   );
 }
 
-/* ------------------------------------------------------------------ the bar */
+/* ------------------------------------------------------------- the standard */
 
 function Bar() {
   return (
     <Section id="bar">
-      <Eyebrow>The bar</Eyebrow>
+      <Eyebrow>The Standard</Eyebrow>
       <Heading>Four stages. Every engineer. No exceptions.</Heading>
       <Lede>
         This is the filter Outcraft is built around. It is public so clients can
@@ -360,9 +361,20 @@ function Footer() {
             Outcraft <span className="text-muted">AI</span>
           </span>
         </div>
-        <p className="font-mono text-xs text-muted">
-          {site.domain} · © {new Date().getFullYear()}
-        </p>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          <Link
+            href="/engineers"
+            className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-2 text-xs font-medium text-bone transition-colors hover:border-ember hover:text-ember"
+          >
+            For engineers
+            <span aria-hidden className="font-mono text-ember">
+              →
+            </span>
+          </Link>
+          <p className="font-mono text-xs text-muted">
+            {site.domain} · © {new Date().getFullYear()}
+          </p>
+        </div>
       </div>
     </footer>
   );

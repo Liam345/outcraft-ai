@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EngineerApplicationForm } from "@/components/EngineerApplicationForm";
 import { Nav } from "@/components/Nav";
 import { Button, Eyebrow, Heading, Lede, LogoMark, Section } from "@/components/ui";
 import {
@@ -11,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "For engineers",
   description:
-    "Apply to the Outcraft AI engineer bench. We work with senior AI-native engineers who can ship production software with agentic workflows.",
+    "Work with Outcraft AI. We work with senior AI-native engineers who can ship production software with agentic workflows.",
 };
 
 const applicationFields = [
@@ -50,7 +51,7 @@ function Hero() {
       <div className="relative mx-auto w-full max-w-6xl px-6 pt-24 pb-20 md:px-10 md:pt-32 md:pb-24">
         <Eyebrow>For senior engineers</Eyebrow>
         <h1 className="mt-6 max-w-5xl text-[2.6rem] leading-[1.05] font-medium tracking-[-0.03em] text-balance md:text-7xl">
-          Join the Outcraft AI engineer bench.
+          Work with Outcraft AI.
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
           We work with senior engineers who can ship production software with
@@ -58,9 +59,9 @@ function Hero() {
           their work when it reaches real users.
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <Button href="#apply">Apply to the bench</Button>
+          <Button href="#apply">Apply as an engineer</Button>
           <Button href="#bar" variant="ghost">
-            See the bar
+            See the standard
           </Button>
         </div>
       </div>
@@ -129,12 +130,12 @@ function Expectations() {
   );
 }
 
-/* ------------------------------------------------------------------ the bar */
+/* ------------------------------------------------------------- the standard */
 
 function Bar() {
   return (
     <Section id="bar">
-      <Eyebrow>The gauntlet</Eyebrow>
+      <Eyebrow>The Standard</Eyebrow>
       <Heading>Four stages. Published so you can prepare.</Heading>
       <Lede>
         No trick questions, no whiteboard trivia, and no take-home that is
@@ -195,100 +196,7 @@ function Application() {
           </p>
         </div>
 
-        <form
-          action={`mailto:${site.founder.email}?subject=Engineer%20application`}
-          method="post"
-          encType="text/plain"
-          className="rounded-2xl border border-line bg-ink p-6 md:p-8"
-        >
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="block text-sm font-medium text-bone" htmlFor="name">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                required
-                className="mt-3 w-full rounded-xl border border-line bg-ink-2 px-4 py-3 text-sm text-bone outline-none transition-colors placeholder:text-muted focus:border-ember"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-bone" htmlFor="email">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className="mt-3 w-full rounded-xl border border-line bg-ink-2 px-4 py-3 text-sm text-bone outline-none transition-colors placeholder:text-muted focus:border-ember"
-              />
-            </div>
-          </div>
-
-          <div className="mt-5">
-            <label className="block text-sm font-medium text-bone" htmlFor="links">
-              Links
-            </label>
-            <input
-              id="links"
-              name="links"
-              placeholder="LinkedIn, GitHub, personal site, code sample"
-              className="mt-3 w-full rounded-xl border border-line bg-ink-2 px-4 py-3 text-sm text-bone outline-none transition-colors placeholder:text-muted focus:border-ember"
-            />
-          </div>
-
-          <div className="mt-5">
-            <label className="block text-sm font-medium text-bone" htmlFor="system">
-              System you are proudest of
-            </label>
-            <textarea
-              id="system"
-              name="system"
-              rows={6}
-              required
-              placeholder="What did you own, what could go wrong, and what decision would you defend hardest?"
-              className="mt-3 w-full resize-y rounded-xl border border-line bg-ink-2 p-4 text-sm leading-relaxed text-bone outline-none transition-colors placeholder:text-muted focus:border-ember"
-            />
-          </div>
-
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="block text-sm font-medium text-bone" htmlFor="ai-tools">
-                AI tools
-              </label>
-              <input
-                id="ai-tools"
-                name="ai-tools"
-                placeholder="Claude Code, Codex, Cursor..."
-                className="mt-3 w-full rounded-xl border border-line bg-ink-2 px-4 py-3 text-sm text-bone outline-none transition-colors placeholder:text-muted focus:border-ember"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-bone" htmlFor="availability">
-                Availability and rate
-              </label>
-              <input
-                id="availability"
-                name="availability"
-                placeholder="20 hrs/week, full-time, day rate..."
-                className="mt-3 w-full rounded-xl border border-line bg-ink-2 px-4 py-3 text-sm text-bone outline-none transition-colors placeholder:text-muted focus:border-ember"
-              />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-ember px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-bone"
-          >
-            Email application
-          </button>
-          <p className="mt-4 text-center text-xs leading-relaxed text-muted">
-            This opens your email client. I read applications directly while the
-            bench is still small.
-          </p>
-        </form>
+        <EngineerApplicationForm />
       </div>
     </Section>
   );

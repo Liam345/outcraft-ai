@@ -1,33 +1,55 @@
 "use client";
 
-type TeamPlanFormProps = {
-  recipient: string;
-};
+import { useState } from "react";
 
-export function TeamPlanForm({ recipient }: TeamPlanFormProps) {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+type SubmissionState = "idle" | "sending" | "sent" | "error";
+
+export function TeamPlanForm() {
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setSubmissionState("sending");
+    setMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const brief = String(formData.get("brief") ?? "").trim();
-    const stack = String(formData.get("stack") ?? "").trim();
-    const email = String(formData.get("email") ?? "").trim();
-    const subject = "Outcraft AI team plan";
-    const body = [
-      "What are you building?",
-      brief,
-      "",
-      "Current stack",
-      stack || "Not provided",
-      "",
-      "Work email",
-      email,
-    ].join("\n");
+    let response: Response;
 
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+    try {
+      response = await fetch("/api/team-plan", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          brief: formData.get("brief"),
+          stack: formData.get("stack"),
+          email: formData.get("email"),
+          company: formData.get("company"),
+        }),
+      });
+    } catch {
+      setSubmissionState("error");
+      setMessage("Could not send the brief. Please try again.");
+      return;
+    }
+
+    const result = (await response.json().catch(() => null)) as {
+      error?: string;
+    } | null;
+
+    if (!response.ok) {
+      setSubmissionState("error");
+      setMessage(result?.error ?? "Could not send the brief. Please try again.");
+      return;
+    }
+
+    form.reset();
+    setSubmissionState("sent");
+    setMessage("Brief sent. I will reply with a practical team plan.");
   }
 
   return (
@@ -45,6 +67,14 @@ export function TeamPlanForm({ recipient }: TeamPlanFormProps) {
         required
         placeholder="Example: We need to ship an AI support agent inside our existing Next.js app."
         className="mt-3 w-full resize-y rounded-xl border border-line bg-ink p-4 text-sm leading-relaxed text-bone outline-none transition-colors placeholder:text-muted focus:border-ember"
+      />
+
+      <input
+        aria-hidden="true"
+        autoComplete="off"
+        className="hidden"
+        name="company"
+        tabIndex={-1}
       />
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -76,13 +106,24 @@ export function TeamPlanForm({ recipient }: TeamPlanFormProps) {
 
       <button
         type="submit"
-        className="mt-6 inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-ember px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-bone"
+        disabled={submissionState === "sending"}
+        className="mt-6 inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-ember px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-bone disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Email me the brief
+        {submissionState === "sending" ? "Sending..." : "Email me the brief"}
       </button>
       <p className="mt-4 text-center text-xs leading-relaxed text-muted">
-        Opens a prefilled email to {recipient}.
+        Sends directly to Outcraft AI. No mail app needed.
       </p>
+      {message ? (
+        <p
+          className={`mt-4 text-center text-sm leading-relaxed ${
+            submissionState === "error" ? "text-ember" : "text-bone"
+          }`}
+          role="status"
+        >
+          {message}
+        </p>
+      ) : null}
     </form>
   );
 }
