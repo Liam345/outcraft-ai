@@ -23,8 +23,8 @@ export function Nav({ context = "home" }: { context?: "home" | "engineers" }) {
   const cta =
     context === "engineers"
       ? {
-          href: `mailto:${site.founder.email}?subject=Engineer%20application`,
-          label: "Apply",
+          href: "/",
+          label: "For Startups",
         }
       : { href: site.bookingUrl, label: "Get a 30-min velocity audit" };
 

@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const from = process.env.RESEND_FROM_EMAIL ?? defaultFromEmail;
+  const from = getFromEmail();
   const subject = `Outcraft AI team plan request from ${email}`;
   const text = [
     "New Outcraft AI team plan request",
@@ -104,10 +104,9 @@ export async function POST(request: Request) {
       message: error?.message,
     });
 
-    if (
-      response.status === 403 &&
-      error?.message?.toLowerCase().includes("domain is not verified")
-    ) {
+    const resendMessage = error?.message ?? "";
+
+    if (response.status === 403 && resendMessage.toLowerCase().includes("domain is not verified")) {
       return Response.json(
         {
           error: `Email sender domain is not verified in Resend yet. Verify ${senderDomain} in Resend, then try again.`,
@@ -117,7 +116,11 @@ export async function POST(request: Request) {
     }
 
     return Response.json(
-      { error: "Could not send the email. Please try again." },
+      {
+        error: resendMessage
+          ? `Email provider rejected the send: ${resendMessage}`
+          : "Could not send the email. Please try again.",
+      },
       { status: 502 },
     );
   }
@@ -131,6 +134,23 @@ function normalize(value: unknown) {
 
 function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function getFromEmail() {
+  const configured = process.env.RESEND_FROM_EMAIL?.trim();
+
+  if (!configured) {
+    return defaultFromEmail;
+  }
+
+  if (
+    (configured.startsWith('"') && configured.endsWith('"')) ||
+    (configured.startsWith("'") && configured.endsWith("'"))
+  ) {
+    return configured.slice(1, -1).trim();
+  }
+
+  return configured;
 }
 
 function escapeHtml(value: string) {
