@@ -240,7 +240,7 @@ export const engineerReasons = [
   },
   {
     title: "Founder-reviewed applications",
-    body: "Every engineer is reviewed against the same published bar. The bench stays useful only if the bar stays high.",
+    body: "Every engineer is reviewed against the same published standard. The client promise only works if the standard stays high.",
   },
   {
     title: "Clear expectations",

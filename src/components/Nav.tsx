@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 import { Button, LogoMark } from "./ui";
 
 const homeLinks = [
-  { href: "#bar", label: "Bar" },
+  { href: "#bar", label: "Standard" },
   { href: "#team-plan", label: "Team plan" },
   { href: "#roles", label: "Roles" },
   { href: "#how", label: "How it works" },
@@ -14,7 +14,7 @@ const homeLinks = [
 const engineerLinks = [
   { href: "/#roles", label: "For companies" },
   { href: "#why", label: "Why join" },
-  { href: "#bar", label: "The bar" },
+  { href: "#bar", label: "The standard" },
   { href: "#apply", label: "Apply" },
 ];
 
