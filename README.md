@@ -15,6 +15,13 @@ RESEND_FROM_EMAIL="Outcraft AI <hello@contact.outcraftai.com>"
 `RESEND_FROM_EMAIL` must use the subdomain verified in Resend. Form submissions
 are delivered to `vinall@outcraftai.com`.
 
+In Vercel's Environment Variables UI, enter the sender value without wrapping
+shell quotes:
+
+```text
+Outcraft AI <hello@contact.outcraftai.com>
+```
+
 First, run the development server:
 
 ```bash

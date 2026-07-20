@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EngineerApplicationForm } from "@/components/EngineerApplicationForm";
 import { Nav } from "@/components/Nav";
 import { Button, Eyebrow, Heading, Lede, LogoMark, Section } from "@/components/ui";
@@ -214,9 +215,20 @@ function Footer() {
             Outcraft <span className="text-muted">AI</span>
           </span>
         </div>
-        <p className="font-mono text-xs text-muted">
-          {site.domain} · © {new Date().getFullYear()}
-        </p>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-2 text-xs font-medium text-bone transition-colors hover:border-ember hover:text-ember"
+          >
+            For startups
+            <span aria-hidden className="font-mono text-ember">
+              →
+            </span>
+          </Link>
+          <p className="font-mono text-xs text-muted">
+            {site.domain} · © {new Date().getFullYear()}
+          </p>
+        </div>
       </div>
     </footer>
   );
